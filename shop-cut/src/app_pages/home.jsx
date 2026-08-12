@@ -14,7 +14,7 @@ function Home() {
       gsap.from(".Dilli", { y: -10, opacity: 0, duration: 1 });
       // gsap.from(".Billi", { y: -10, opacity: 0, duration: 1 });
     },
-    { scope: hearts.current },
+    { scope: hearts },
   );
   return (
     <>
