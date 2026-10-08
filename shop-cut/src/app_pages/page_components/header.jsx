@@ -24,8 +24,9 @@ export const Navbar = () => {
 
                 {/* Desktop Navigation */}
                 <nav className="hidden md:flex items-center gap-6">
-                    {navItems.map((item) => (
-                        <Link to={item.href}>
+                    {navItems.map((item, idx) => (
+                        return(
+                        <Link key={ idx } to={item.href}>
                             <h3 className="hover:text-red-400">{item.label}</h3>
                         </Link>
                     ))}
@@ -53,15 +54,14 @@ export const Navbar = () => {
                 isOpen && (
                     <div className="md:hidden border-b border-zinc-200 bg-white px-4 py-4 shadow-lg dark:border-zinc-800 dark:bg-zinc-950 animate-in fade-in slide-in-from-top-5 duration-200">
                         <nav className="flex flex-col gap-4">
-                            {navItems.map((item) => (
-                                <a
-                                    key={item.label}
-                                    href={item.href}
-                                    onClick={() => setIsOpen(false)}
-                                    className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-                                >
-                                    {item.label}
-                                </a>
+                            {navItems.map((item,idx) => (
+                                       return (
+                                           <Link key={ idx } to={ item.href } >
+                                               <span className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+                                                   onClick={() => setIsOpen(false)}>
+                                                   {item.label}
+                                               </span>
+                                           </Link>
                             ))}
                             <button className="mt-2 w-full h-9 rounded-md bg-zinc-900 text-sm font-medium text-zinc-50 dark:bg-zinc-50 dark:text-zinc-900">
                                 Get Started
