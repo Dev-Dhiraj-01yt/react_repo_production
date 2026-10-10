@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import { RiCloseLine, RiMenuFill } from "@remixicon/react";
+import { RiCloseLine, RiMenuFill, RiHome9Line, RiShoppingBag2Line, RiMoneyRupeeCircleLine, RiInfoI} from "@remixicon/react";
 
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
     const navItems = [
-        { label: "Home", href: "/" },
-        { label: "Features", href: "/products" },
-        { label: "Pricing", href: "/products" },
-        { label: "About", href: "/login" },
+        { label: "Home", href: "/", logo: <RiHome9Line /> },
+        { label: "Features", href: "/products", logo: <RiShoppingBag2Line /> },
+        { label: "Pricing", href: "/products", logo: <RiMoneyRupeeCircleLine /> },
+        { label: "About", href: "/login", logo: <RiInfoI /> },
     ]
     return (
         <header className="sticky top-0 z-50 w-full border-b backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/80 overflow-hidden rounded-t-lg">
@@ -18,15 +18,14 @@ export const Navbar = () => {
                 <div className="flex items-center gap-2">
                     <div className="h-9 w-9 rounded-full bg-zinc-900 dark:bg-zinc-50" />
                     <span className="font-fraunces font-600 text-xl text-zinc-900 dark:text-zinc-50 tracking-loose">
-                        Brand
+                        Spicios'
                     </span>
                 </div>
 
                 {/* Desktop Navigation */}
                 <nav className="hidden md:flex items-center gap-6">
                     {navItems.map((item, idx) => (
-                        return(
-                        <Link key={ idx } to={item.href}>
+                        <Link key={idx} to={item.href}>
                             <h3 className="hover:text-red-400">{item.label}</h3>
                         </Link>
                     ))}
@@ -54,14 +53,15 @@ export const Navbar = () => {
                 isOpen && (
                     <div className="md:hidden border-b border-zinc-200 bg-white px-4 py-4 shadow-lg dark:border-zinc-800 dark:bg-zinc-950 animate-in fade-in slide-in-from-top-5 duration-200">
                         <nav className="flex flex-col gap-4">
-                            {navItems.map((item,idx) => (
-                                       return (
-                                           <Link key={ idx } to={ item.href } >
-                                               <span className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-                                                   onClick={() => setIsOpen(false)}>
-                                                   {item.label}
-                                               </span>
-                                           </Link>
+                            {navItems.map((item, idx) => (
+                                <Link key={idx} to={item.href} >
+                                    <span className=" flex justify-start item-center gap-2 text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        {item.logo}
+                                        {item.label}
+                                    </span>
+                                </Link>
                             ))}
                             <button className="mt-2 w-full h-9 rounded-md bg-zinc-900 text-sm font-medium text-zinc-50 dark:bg-zinc-50 dark:text-zinc-900">
                                 Get Started
