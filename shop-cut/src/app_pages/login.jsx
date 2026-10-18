@@ -16,14 +16,13 @@ export const Login = () => {
   const [isLoginMode, setIsLoginMode] = useState(false)
 
   // dom elements
-  const registerMod = useRef(null);
-  const backToggleBar = useRef(null);
+  // const registerMod = useRef(null);
+  // const backToggleBar = useRef(null);
 
   // registering registerMod 
 
 
   return (
-
     <div id="login" className="bg-(--page) min-h-dvh w-dvw flex flex-col justify-center items-center overflow-hidden">
     <section className="header flex flex-col justify-start items-center gap-2">
       <span id="logo" className="font-fraunces normal text-xl font-bold text-spicios-green md:text-2xl text-shadow-lg"> Spicios' </span>
@@ -35,17 +34,17 @@ export const Login = () => {
       <div id="toggle" className="min-h-2 w-[55%] max-w-140 bg-(--input-bg) rounded-full relative overflow-hidden z-1 flex justify-between items-center gap-5">
 
         {/* toggle background bar */}
-        <div ref={backToggleBar} id="toggle_board" className={`absolute w-[50%] h-full bg-(--forest) z-0 rounded-full ${ isLoginMode ? "right-0" : "left-0"}`}></div>
+        <div id="toggle_board" className={`absolute w-[50%] h-full bg-(--forest) z-0 rounded-full ${ isLoginMode ? `right-0` : `left-0`}`}></div>
 
-        <button ref={registerMod} type="button" className="h-full w-[49%] pt-2 pb-2 pl-4 pr-4 z-1 text-lg text-amber-50"onClick={() => {
+        <button type="button" className="h-full w-[49%] pt-2 pb-2 pl-4 pr-4 z-1 text-lg text-amber-50"onClick={() => {
            setIsLoginMode(false);
         }}>register</button>
-        <button ref={registerMod} type="button" className="h-full w-[49%] pt-2 pb-2 pl-4 pr-4 z-1 text-lg text-(--saffron)" onClick={() => {
+        <button type="button" className="h-full w-[49%] pt-2 pb-2 pl-4 pr-4 z-1 text-lg text-(--saffron)" onClick={() => {
           setIsLoginMode(true)
         }}>Login</button>
       </div>
     </section>
-    <div id="registarion"className={` h-full w-full ${isLoginMode ? "opacity-0" : "opacity-100"}`}>
+    <div id="registarion"className={`h-full w-full ${isLoginMode ? "opacity-0" : "opacity-100"}`}>
       <section className="progressBar w-full bg-(--cream-light) pl-5 pr-5  border-t border-b border-(--input-border) flex nowrap shrink-0 justify-between items-center pt-2 pb-2 shadow-lg">
       <span className="level1 flex nowrap shrink-0 justify-center items-center gap-0.5">
         <div className="h-1.5 w-1.5 border border-yellow-500 rounded-full bg-yellow-500"></div>
