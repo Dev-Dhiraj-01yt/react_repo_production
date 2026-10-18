@@ -12,104 +12,66 @@ export const Login = () => {
 
   const [Isloading, setIsLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [isLoginMode, setIsLoginMode] = useState(false)
 
-  // with google ai
+  // dom elements
+  const registerMod = useRef(null);
+  const backToggleBar = useRef(null);
 
-  const handleChange = (e) => {
-    const { id, type, value, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [id]: type === 'checkbox' ? checked : value,
-    }));
-  };
+  // registering registerMod 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Logging in with data:', formData);
-    alert(`Logging in as: ${formData.username}`);
-  };
 
   return (
-    <div className="flex items-center justify-center p-4 font-sans h-[100vh] w-screen bg-linear-to-r/decreasing from-indigo-500 to-teal-400">
-        <div className="w-full max-w-md rounded-xl bg-[rgb(255, 255, 255)] p-8 shadow-lg">
-          <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">Welcome to spicios'</h2>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Username Input */}
-            <div className="flex flex-col text-left">
-              <label htmlFor="username" className="mb-2 text-sm font-medium text-gray-600">
-                Username or Email
-              </label>
-              <input
-                type="text"
-                id="username"
-                placeholder="Enter your username"
-                value={formData.username}
-                onChange={handleChange}
-                required
-                className="w-full rounded-lg border border-gray-300 p-3 text-base outline-none transition duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-              />
-            </div>
+    <div id="login" className="bg-(--page) min-h-dvh w-dvw flex flex-col justify-center items-center overflow-hidden">
+    <section className="header flex flex-col justify-start items-center gap-2">
+      <span id="logo" className="font-fraunces normal text-xl font-bold text-spicios-green md:text-2xl text-shadow-lg"> Spicios' </span>
+      <span id="tagline" className="font-Inter italic text-sm opacity-55">
+        <p>Secure registration system</p>
+      </span>
+    </section>
+    <section id="loginToggle" className="min-h-4 w-full bg-(--cream-light) p-2 mt-4 flex justify-center items-center">
+      <div id="toggle" className="min-h-2 w-[55%] max-w-140 bg-(--input-bg) rounded-full relative overflow-hidden z-1 flex justify-between items-center gap-5">
 
-            {/* Password Input */}
-            <div className="flex flex-col text-left">
-              <label htmlFor="password" className="mb-2 text-sm font-medium text-gray-600">
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                placeholder="Enter your password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-                className="w-full rounded-lg border border-gray-300 p-3 text-base outline-none transition duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-              />
-            </div>
+        {/* toggle background bar */}
+        <div ref={backToggleBar} id="toggle_board" className={`absolute w-[50%] h-full bg-(--forest) z-0 rounded-full ${ isLoginMode ? "right-0" : "left-0"}`}></div>
 
-            {/* Actions: Remember Me & Forgot Password */}
-            <div className="flex items-center justify-between text-sm">
-              <label htmlFor="rememberMe" className="flex items-center gap-2 text-gray-600 cursor-pointer select-none">
-                <input
-                  type="checkbox"
-                  id="rememberMe"
-                  checked={formData.rememberMe}
-                  onChange={handleChange}
-                  className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                />
-                Remember me
-              </label>
-              <a
-                href="#forgot"
-                onClick={(e) => e.preventDefault()}
-                className="text-blue-600 hover:underline font-medium"
-              >
-                Forgot Password?
-              </a>
-            </div>
+        <button ref={registerMod} type="button" className="h-full w-[49%] pt-2 pb-2 pl-4 pr-4 z-1 text-lg text-amber-50"onClick={() => {
+           setIsLoginMode(false);
+        }}>register</button>
+        <button ref={registerMod} type="button" className="h-full w-[49%] pt-2 pb-2 pl-4 pr-4 z-1 text-lg text-(--saffron)" onClick={() => {
+          setIsLoginMode(true)
+        }}>Login</button>
+      </div>
+    </section>
+    <div id="registarion"className={` h-full w-full ${isLoginMode ? "opacity-0" : "opacity-100"}`}>
+      <section className="progressBar w-full bg-(--cream-light) pl-5 pr-5  border-t border-b border-(--input-border) flex nowrap shrink-0 justify-between items-center pt-2 pb-2 shadow-lg">
+      <span className="level1 flex nowrap shrink-0 justify-center items-center gap-0.5">
+        <div className="h-1.5 w-1.5 border border-yellow-500 rounded-full bg-yellow-500"></div>
+        <p className="text-[7px] font-Inter weight-300">1.Details</p>
+      </span>
 
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-full rounded-lg bg-blue-600 p-3 text-base font-semibold text-white transition duration-200 hover:bg-blue-700 active:scale-[0.99]"
-            >
-              Log In
-            </button>
-          </form>
+      {/* bg empty here */}
 
-          {/* Signup Redirect */}
-          <p className="mt-6 text-center text-sm text-gray-600">
-            Don't have an account?{' '}
-            <a
-              href="#signup"
-              onClick={(e) => e.preventDefault()}
-              className="text-blue-600 hover:underline font-medium"
-            >
-              Sign up
-            </a>
-          </p>
-        </div>
+      <div className="h-1 w-10 bg-() rounded-full border-[0.1px] border-(--forest)"></div>
+      <span className="level2 flex nowrap shrink-0 justify-center items-center gap-0.5">
+        {/* bg empty here */}
+        <div className="h-1.5 w-1.5 border border-(--saffron) rounded-full bg-()"></div>
+        <p className="text-[7px] font-Inter weight-300">2.Verification</p>
+      </span>
+      {/* bg empty here */}
+      <div className="h-1 w-10 bg-() rounded-full border-[0.1px] border-(--forest)"></div>
+
+      <span className="level3 flex nowrap shrink-0 justify-center items-center gap-0.5">
+        {/* bg empty here */}
+        <div className="h-1.5 w-1.5 border border-yellow-500 rounded-full bg-()"></div>
+        <p className="text-[7px] font-Inter weight-300">3.Verified</p>
+      </span>
+    </section>
+    <section id="form">
+    </section>
     </div>
-  );
+  </div >
+  )
 };
