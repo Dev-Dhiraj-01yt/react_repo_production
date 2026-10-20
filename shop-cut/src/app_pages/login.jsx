@@ -15,7 +15,6 @@ export const Login = () => {
   });
 
   // varibles
-  const [Mode, setMode] = useState("");
   const [user, setUser] = useState("");
   const [phone, setPhone] = useState("");
   const [eMail, setEmail] = useState("");
@@ -34,33 +33,29 @@ export const Login = () => {
 
   // registering porocess
   const reisterORlogin = ({ user, eMail, pass, phone }) => {
-    if (Mode === "login") {
-      if (this.eMail)
+    if (isLoginMode) {
+      if (eMail)
         setLoginForm({
-          email: this.eMail,
-          password: this.pass,
+          email: eMail,
+          password: pass,
         });
-      if (this.user) {
+      if (user) {
         setLoginForm({
-          username: this.user,
-          password: this.pass,
+          username: user,
+          password: pass,
         });
       }
     }
-    if ((this.user, this.eMail, this.pass, this.phone)) {
+    if (user, eMail, pass, phone) {
       setFormData({
-        username: this.user,
-        phoneNo: this.phone,
-        email: this.eMail,
-        password: this.pass,
+        username: user,
+        phoneNo: phone,
+        email: eMail,
+        password: pass,
       });
     }
   };
 
-  // useEffect automode set
-  useEffect(() => {
-    isLoginMode ? setMode("Login") : setMode("registration");
-  }, [Mode]);
 
   return (
     <div
